@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; media-src 'self' data: blob:; connect-src 'self' data: blob:; worker-src 'self' blob:; manifest-src 'self'; form-action 'none'; base-uri 'none'; object-src 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Photo Filters — Free Online Photo Editor: Brightness, Contrast, Filters | S3eidat Tools</title>
+<meta name="description" content="Quick photo edits in your browser: brightness, contrast, saturation, warmth, hue, blur, sharpen, vignette, black and white, sepia, presets, rotate and flip. Export full resolution. Nothing uploaded.">
+<meta property="og:title" content="Photo Filters — free, private photo editor">
+<meta property="og:description" content="Light, colour and filter edits with full-resolution export. Runs 100% in your browser.">
+<meta property="og:image" content="screenshot.png">
+<link rel="icon" href="kit/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="kit/kit.css">
+<link rel="stylesheet" href="app.css">
+<script src="kit/kit.js"></script>
+</head>
+<body data-tool="photo-filters">
+<main class="s3-main">
+  <section class="s3-hero">
+    <h1>Photo Filters</h1>
+    <p>Light, colour and filter edits for your photos, with full-resolution export. Your photo is edited on your device and never uploaded.</p>
+  </section>
+
+  <div class="pf-grid">
+    <section class="card stack pf-left">
+      <label class="drop" id="drop">
+        <input type="file" accept="image/*" hidden>
+        <svg class="i"><use href="#i-image"/></svg>
+        <b>Drop a photo, click to choose, or paste</b>
+        <span class="faint">JPG, PNG, WebP, GIF, AVIF. Edited locally, never uploaded.</span>
+      </label>
+      <div id="editor" hidden>
+        <div class="row between pf-bar">
+          <div class="row pf-tools">
+            <button class="btn small" id="rotL" title="Rotate left" aria-label="Rotate left">⟲</button>
+            <button class="btn small" id="rotR" title="Rotate right" aria-label="Rotate right">⟳</button>
+            <button class="btn small" id="flipH" title="Flip horizontally" aria-label="Flip horizontally">⇋</button>
+            <button class="btn small" id="flipV" title="Flip vertically" aria-label="Flip vertically">⇵</button>
+          </div>
+          <div class="row">
+            <button class="btn small" id="compare" title="Hold to see the original (or hold \ )">Hold to compare</button>
+            <button class="btn ghost small" id="newImg"><svg class="i"><use href="#i-upload"/></svg>New photo</button>
+          </div>
+        </div>
+        <div class="pf-stage checker mt" id="stage">
+          <canvas id="cv" aria-label="Edited photo preview"></canvas>
+          <span class="chip pf-badge" id="badge" hidden>Original</span>
+        </div>
+        <div class="row between mt">
+          <span class="faint" id="meta"></span>
+          <span class="faint">Press and hold the photo to compare</span>
+        </div>
+        <h2 class="mt">Presets</h2>
+        <div class="pf-presets" id="presets" role="group" aria-label="Preset filters"></div>
+      </div>
+    </section>
+
+    <section class="card stack pf-right">
+      <div class="row between"><h2>Adjust</h2><button class="btn ghost small" id="reset"><svg class="i"><use href="#i-refresh"/></svg>Reset</button></div>
+      <div class="stack pf-sliders" id="sliders"></div>
+      <h2 class="mt">Export</h2>
+      <div class="row">
+        <div class="seg" id="fmt" role="group" aria-label="Export format">
+          <button aria-pressed="true" data-v="jpeg">JPG</button>
+          <button aria-pressed="false" data-v="png">PNG</button>
+        </div>
+        <label class="field grow" id="qWrap"><span>Quality <span class="faint" id="qLbl">92</span></span><input type="range" id="q" min="50" max="100" value="92"></label>
+      </div>
+      <button class="btn primary big" id="export" disabled><svg class="i"><use href="#i-download"/></svg>Export full resolution</button>
+      <p class="faint" id="exportInfo">Exports at the photo's original size. Metadata (EXIF, GPS) is not copied into the new file.</p>
+    </section>
+  </div>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
